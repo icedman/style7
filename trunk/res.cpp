@@ -16,7 +16,7 @@ bool ResHack::load(const QString& f)
 {
 	if (!QFile::exists(f))
 	{
-		qDebug("file not found");
+		qDebug("file not found %s", qPrintable(f));
 		return false;
 	}
 
@@ -47,7 +47,7 @@ bool ResHack::beginUpdate(QString outputFilename)
 
 	QString dst = outputFilename;
 	if (outputFilename == filename)
-		dst = "aero2.msstyles"; //dst += ".tmp";
+		dst = "_aero.msstyles";
 	CopyFileA(outputFilename.toAscii().data(), dst.toAscii().data(), FALSE);
 	hResUpdate = BeginUpdateResourceA(dst.toAscii().data(), false);
 	return (hResUpdate != 0);
